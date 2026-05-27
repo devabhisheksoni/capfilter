@@ -1,94 +1,26 @@
-# Devvit Mod Tool Template
+# CapFilter - Reddit Mod-Intelligence Tool
 
-A template for building Reddit moderation tools using Devvit web. This template provides a complete foundation for creating custom moderation tools with bulk comment management capabilities.
+An automated mod-intelligence tool built natively on Devvit to instantly detect cross-platform spam and accurately categorize Reddit posts, saving moderators countless hours of manual labor.
 
 ## Features
 
-This template includes a working mod tool called **"Mop"** that demonstrates:
+CapFilter acts as an invisible assistant for subreddit mod teams with the following capabilities:
 
-- **Bulk Comment Management**: Remove or lock multiple comments at once
-- **Thread-level Actions**: "Mop comments" - Remove/lock a comment and all its replies
-- **Post-level Actions**: "Mop post comments" - Remove/lock all comments on a post
-- **Flexible Options**:
-  - Remove comments, lock comments, or both
-  - Skip distinguished comments (moderator/admin posts)
-- **Permission Checks**: Only moderators with proper permissions can use the tool
-- **User-friendly Forms**: Interactive forms with clear options and validation
+- **Cross-Platform Protection**: Automatically scans post titles and content to detect and flag external links (Instagram, TikTok, Twitter, YouTube).
+- **Author Authority (Cap Elite)**: Analyzes content for high-impact keywords (e.g., "urgent", "breaking") to prioritize quality posts.
+- **Automated Flairing**: Instantly assigns relevant custom flairs (e.g., '🔥 High Impact', '📱 Cross-Platform Risk', or '🎩 Cap Elite') using the `setPostFlair` API based on the context.
+- **Analytics Dashboard**: Utilizes Redis in the backend to maintain a live counter of filtered content, providing moderators with actionable data.
+- **Pure Native Execution**: Built entirely using the Devvit Public API without relying on external web server wrappers (no Hono/Vite bloat).
 
 ## Tech Stack
 
-- [Devvit](https://developers.reddit.com/): Reddit's platform for building and deploying apps
-- [Vite](https://vite.dev/): Fast build tool for the web components
-- [Hono](https://hono.dev/): Lightweight web framework for backend logic
-- [TypeScript](https://www.typescriptlang.org/): Type-safe development
+- [Devvit](https://developers.reddit.com/): Reddit's platform for building and deploying apps natively.
+- [TypeScript](https://www.typescriptlang.org/): For strict type-safe development.
+- **Redis**: For state management and analytics tracking.
 
 ## Getting Started
 
-1. **Clone this template** or use it as a starting point for your mod tool
+1. **Clone this repository**
 2. **Install dependencies**:
-   ```bash
+```bash
    npm install
-   ```
-3. **Configure your app** in `devvit.json`:
-   - Update the app name
-   - Set your development subreddit
-4. **Start developing**:
-   ```bash
-   npm run dev
-   ```
-5. **Test your changes** in your development subreddit
-
-## Project Structure
-
-```
-src/
-├── index.ts          # Main server setup with Hono routes
-├── core/
-│   └── nuke.ts       # Core moderation logic for bulk operations
-└── routes/
-    ├── api.ts        # Public API endpoints
-    ├── forms.ts      # Form submission handlers
-    ├── menu.ts       # Context menu item handlers
-    └── triggers.ts   # App lifecycle triggers
-```
-
-## Customizing Your Mod Tool
-
-This template is designed to be easily customizable:
-
-1. **Modify existing actions**: Edit the nuke functionality in `src/core/nuke.ts`
-2. **Add new menu items**: Update `devvit.json` and add handlers in `src/routes/menu.ts`
-3. **Create new forms**: Add form definitions and handlers in `src/routes/forms.ts`
-4. **Add API endpoints**: Extend `src/routes/api.ts` for external integrations
-
-## Commands
-
-- `npm run dev`: Starts development mode with live reload on your test subreddit
-- `npm run build`: Builds your mod tool for production
-- `npm run deploy`: Uploads a new version of your app to Reddit
-- `npm run launch`: Publishes your app for review and public use
-- `npm run login`: Authenticates your CLI with Reddit
-- `npm run type-check`: Runs TypeScript type checking, linting, and formatting
-
-## How It Works
-
-The template demonstrates Reddit mod tool development through the "Mop" feature:
-
-1. **Context Menu Integration**: Click on the Mod Shield icon in a comment to see custom mod actions
-2. **Permission Validation**: Automatically checks if the user has moderation permissions
-3. **Interactive Forms**: Presents options through Reddit's native form system
-4. **Reddit API**: Processes multiple comments using Reddit's API
-
-## Development Notes
-
-- **Permissions**: The app requires `reddit: true` permission to access Reddit's API
-- **User Types**: Menu items are restricted to `moderator` user type
-
-## Deployment
-
-1. Test thoroughly in your development subreddit
-2. Run `npm run deploy` to upload your app
-3. Use `npm run launch` to submit for Reddit's app review process
-4. Once approved, users can install your mod tool from Reddit's app directory
-
-This template provides everything you need to build powerful, user-friendly moderation tools for Reddit communities.
